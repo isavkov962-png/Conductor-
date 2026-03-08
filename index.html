@@ -1,259 +1,82 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uk">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Дирижёр — Совет дня</title>
+<title>Диригент — Порада дня</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   body {
-    background: #ffffff;
-    color: #111111;
-    font-family: 'Inter', sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 1.5rem;
+    background: #ffffff; color: #111111;
+    font-family: 'Inter', sans-serif; min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; padding: 2rem 1.5rem;
   }
-
-  .container {
-    max-width: 580px;
-    width: 100%;
-  }
-
-  header {
-    text-align: center;
-    margin-bottom: 2.5rem;
-    animation: fadeUp 0.6s ease forwards;
-  }
-
-  .logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    color: #111;
-    margin-bottom: 0.4rem;
-  }
-
-  .date-line {
-    font-size: 0.75rem;
-    font-weight: 400;
-    color: #888;
-    letter-spacing: 0.05em;
-  }
-
-  .card {
-    background: #f9f9f9;
-    border: 2px solid #e8e8e8;
-    border-radius: 12px;
-    padding: 2.5rem 2.5rem 2rem;
-    min-height: 220px;
-    animation: fadeUp 0.6s ease 0.15s both;
-  }
-
-  .tag {
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: #b07d3a;
-    margin-bottom: 1.2rem;
-    display: inline-block;
-    background: #fff3e0;
-    padding: 0.3rem 0.75rem;
-    border-radius: 100px;
-  }
-
-  .ai-badge {
-    display: none;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.65rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #4a7c59;
-    background: #e8f5ed;
-    padding: 0.3rem 0.75rem;
-    border-radius: 100px;
-    margin-bottom: 1rem;
-    width: fit-content;
-  }
-
-  .ai-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: #4a7c59;
-    animation: pulse 2s infinite;
-  }
-
+  .container { max-width: 580px; width: 100%; }
+  header { text-align: center; margin-bottom: 2.5rem; animation: fadeUp 0.6s ease forwards; }
+  .logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.05em; color: #111; margin-bottom: 0.4rem; }
+  .date-line { font-size: 0.75rem; font-weight: 400; color: #888; letter-spacing: 0.05em; }
+  .card { background: #f9f9f9; border: 2px solid #e8e8e8; border-radius: 12px; padding: 2.5rem 2.5rem 2rem; min-height: 220px; animation: fadeUp 0.6s ease 0.15s both; }
+  .tag { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: #b07d3a; margin-bottom: 1.2rem; display: inline-block; background: #fff3e0; padding: 0.3rem 0.75rem; border-radius: 100px; }
+  .ai-badge { display: none; align-items: center; gap: 0.4rem; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #4a7c59; background: #e8f5ed; padding: 0.3rem 0.75rem; border-radius: 100px; margin-bottom: 1rem; width: fit-content; }
+  .ai-dot { width: 6px; height: 6px; border-radius: 50%; background: #4a7c59; animation: pulse 2s infinite; }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
-
-  .tip-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    line-height: 1.45;
-    color: #111111;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-  }
-
-  .tip-detail {
-    font-size: 1rem;
-    line-height: 1.75;
-    color: #444444;
-    font-weight: 400;
-    border-top: 1px solid #e0e0e0;
-    padding-top: 1.25rem;
-  }
-
-  .loading {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    padding: 3rem 0;
-    color: #aaa;
-    font-size: 0.8rem;
-    letter-spacing: 0.05em;
-  }
-
-  .spinner {
-    width: 24px; height: 24px;
-    border: 2px solid #e0e0e0;
-    border-top-color: #b07d3a;
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-  }
-
+  .tip-text { font-family: 'Playfair Display', serif; font-size: 2rem; line-height: 1.45; color: #111111; font-weight: 700; margin-bottom: 1.5rem; }
+  .tip-detail { font-size: 1rem; line-height: 1.75; color: #444444; font-weight: 400; border-top: 1px solid #e0e0e0; padding-top: 1.25rem; }
+  .loading { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; padding: 3rem 0; color: #aaa; font-size: 0.8rem; letter-spacing: 0.05em; }
+  .spinner { width: 24px; height: 24px; border: 2px solid #e0e0e0; border-top-color: #b07d3a; border-radius: 50%; animation: spin 0.8s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
-
-  .nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1.5rem;
-    animation: fadeUp 0.6s ease 0.3s both;
-  }
-
-  .btn {
-    background: #111;
-    border: none;
-    color: #fff;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    padding: 0.65rem 1.4rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
-  }
-
+  .nav { display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; animation: fadeUp 0.6s ease 0.3s both; }
+  .btn { background: #111; border: none; color: #fff; font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; padding: 0.65rem 1.4rem; border-radius: 8px; cursor: pointer; transition: background 0.2s, transform 0.1s; }
   .btn:hover { background: #333; transform: translateY(-1px); }
   .btn:active { transform: translateY(0); }
-
-  .counter {
-    font-size: 0.78rem;
-    font-weight: 500;
-    color: #888;
-  }
-
-  .progress {
-    height: 3px;
-    background: #e8e8e8;
-    border-radius: 2px;
-    margin-top: 1.5rem;
-    animation: fadeUp 0.6s ease 0.4s both;
-  }
-
-  .progress-bar {
-    height: 100%;
-    background: #b07d3a;
-    border-radius: 2px;
-    transition: width 0.5s ease;
-  }
-
-  .today-btn {
-    display: block;
-    width: 100%;
-    margin-top: 1rem;
-    background: none;
-    border: 2px solid #b07d3a;
-    color: #b07d3a;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 0.7rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s;
-    animation: fadeUp 0.6s ease 0.5s both;
-  }
-
-  .today-btn:hover {
-    background: #b07d3a;
-    color: #fff;
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+  .counter { font-size: 0.78rem; font-weight: 500; color: #888; }
+  .progress { height: 3px; background: #e8e8e8; border-radius: 2px; margin-top: 1.5rem; animation: fadeUp 0.6s ease 0.4s both; }
+  .progress-bar { height: 100%; background: #b07d3a; border-radius: 2px; transition: width 0.5s ease; }
+  .today-btn { display: block; width: 100%; margin-top: 1rem; background: none; border: 2px solid #b07d3a; color: #b07d3a; font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.7rem; border-radius: 8px; cursor: pointer; transition: all 0.2s; animation: fadeUp 0.6s ease 0.5s both; }
+  .today-btn:hover { background: #b07d3a; color: #fff; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 </style>
 </head>
 <body>
 <div class="container">
   <header>
-    <div class="logo">🎼 Совет дирижёра</div>
+    <div class="logo">🎼 Порада диригента</div>
     <div class="date-line" id="dateDisplay"></div>
   </header>
-
   <div class="card" id="card">
-    <div class="loading" id="loadingEl">
-      <div class="spinner"></div>
-      <span>Загрузка совета дня...</span>
-    </div>
+    <div class="loading" id="loadingEl"><div class="spinner"></div><span>Завантаження поради дня...</span></div>
     <div id="tipContent" style="display:none">
-      <div class="ai-badge" id="aiBadge"><div class="ai-dot"></div>Новый совет от ИИ · сегодня</div>
+      <div class="ai-badge" id="aiBadge"><div class="ai-dot"></div>Нова порада від ШІ · сьогодні</div>
       <div class="tag" id="tipTag"></div>
       <div class="tip-text" id="tipText"></div>
       <div class="tip-detail" id="tipDetail"></div>
     </div>
   </div>
-
   <div class="nav">
     <button class="btn" onclick="prevTip()">← Назад</button>
     <span class="counter" id="counter"></span>
-    <button class="btn" onclick="nextTip()">Вперёд →</button>
+    <button class="btn" onclick="nextTip()">Вперед →</button>
   </div>
-
   <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
-  <button class="today-btn" onclick="goToday()">↑ Совет дня</button>
+  <button class="today-btn" onclick="goToday()">↑ Порада дня</button>
 </div>
 
 <script>
 const BASE = [
-  {tag:"Дирижирование", text:"Тишина перед началом — это уже музыка.", detail:"Выдержите паузу после поднятия рук. Оркестр и зал должны затаить дыхание вместе с вами. Это момент, когда вы берёте на себя ответственность за всё пространство."},
-  {tag:"Техника", text:"Левая рука говорит то, что правая не может сказать.", detail:"Правая рука задаёт ритм и темп. Левая — нюансы, динамику, фразировку. Тренируйте их независимость: пусть одна рисует crescendo, пока другая держит ровный пульс."},
-  {tag:"Инструментовка", text:"Струнные — дыхание оркестра. Медные — его кости.", detail:"При инструментовке думайте о балансе как о живом теле: деревянные духовые — нервная система, ударные — пульс сердца. Каждый тембр несёт свою физиологию."},
-  {tag:"Партитуры", text:"Читайте партитуру без инструмента — слышите ли вы её?", detail:"Настоящее чтение партитуры происходит в тишине. Если вы не можете услышать произведение внутренним слухом, за пультом вы будете реагировать, а не вести."},
-  {tag:"Репетиция", text:"Остановитесь один раз — но точно.", detail:"Частые остановки разрушают музыкальный поток и деморализуют оркестр. Лучше дать пройти один раз целиком, отметить всё мысленно, затем работать точечно и конкретно."},
-  {tag:"Работа с оркестром", text:"Оркестр слышит ваш страх раньше, чем вы его замечаете.", detail:"Уверенность дирижёра передаётся физически: через жест, взгляд, дыхание. Если вы сомневаетесь — проработайте это место дома до автоматизма, чтобы за пультом остался только музыкант."},
-  {tag:"Дирижирование", text:"Ауфтакт определяет всё: темп, характер, звук.", detail:"Большинство оркестровых проблем рождаются в неправильном ауфтакте. Скорость вашего preparatory beat — это будущий темп. Характер жеста — будущий звук. Репетируйте ауфтакт отдельно."},
-  {tag:"Инструментовка", text:"Не заполняйте все октавы сразу — оставьте воздух.", detail:"Начинающие оркестраторы боятся пустоты и заполняют все регистры. Опытный мастер знает: пустое пространство в партитуре — это резонанс, глубина, возможность для слушателя."},
-  {tag:"Репетиция", text:"Хвалите оркестр — но только заслуженно.", detail:"Пустая похвала обесценивается быстро. Конкретная и точная похвала создаёт доверие и профессиональную культуру в коллективе."},
-  {tag:"Техника", text:"Чем меньше жест — тем больше напряжение.", detail:"Громкая кульминация не требует большого жеста. Иногда именно сдержанное, почти статичное движение создаёт максимальное внутреннее напряжение — и оркестр, и зал это чувствуют."},
-  {tag:"Партитуры", text:"Изучайте оригинальные рукописи — они дышат иначе.", detail:"Напечатанная партитура — это перевод. Рукопись композитора — оригинал. Темп нот, поправки, помарки рассказывают о сомнениях и решениях автора больше, чем любой комментарий."},
-  {tag:"Работа с оркестром", text:"Знайте имена своих музыкантов.", detail:"Это не просто вежливость. Когда дирижёр говорит по имени — это другой разговор. Имя создаёт контакт и ответственность."},
+  {tag:"Диригування", text:"Тиша перед початком — це вже музика.", detail:"Витримайте паузу після підняття рук. Оркестр і зал мають затамувати подих разом з вами. Це момент, коли ви берете на себе відповідальність за весь простір."},
+  {tag:"Техніка", text:"Ліва рука каже те, що права не може сказати.", detail:"Права рука задає ритм і темп. Ліва — нюанси, динаміку, фразування. Тренуйте їхню незалежність: нехай одна малює crescendo, поки інша тримає рівний пульс."},
+  {tag:"Інструментування", text:"Струнні — дихання оркестру. Мідні — його кістки.", detail:"При інструментуванні думайте про баланс як про живе тіло: дерев'яні духові — нервова система, ударні — пульс серця. Кожен тембр несе свою фізіологію."},
+  {tag:"Партитури", text:"Читайте партитуру без інструмента — чи чуєте ви її?", detail:"Справжнє читання партитури відбувається в тиші. Якщо ви не можете почути твір внутрішнім слухом, за пультом ви будете реагувати, а не вести."},
+  {tag:"Репетиція", text:"Зупиніться один раз — але точно.", detail:"Часті зупинки руйнують музичний потік і деморалізують оркестр. Краще пройти один раз повністю, відзначити все подумки, а потім працювати точково і конкретно."},
+  {tag:"Робота з оркестром", text:"Оркестр чує ваш страх раніше, ніж ви його помічаєте.", detail:"Впевненість диригента передається фізично: через жест, погляд, дихання. Якщо сумніваєтесь — відпрацюйте це місце вдома до автоматизму, щоб за пультом залишився тільки музикант."},
+  {tag:"Диригування", text:"Ауфтакт визначає все: темп, характер, звук.", detail:"Більшість оркестрових проблем народжуються в неправильному ауфтакті. Швидкість вашого preparatory beat — це майбутній темп. Характер жесту — майбутній звук. Репетируйте ауфтакт окремо."},
+  {tag:"Інструментування", text:"Не заповнюйте всі октави одразу — залишайте повітря.", detail:"Початківці-оркестратори бояться порожнечі і заповнюють всі регістри. Досвідчений майстер знає: порожній простір у партитурі — це резонанс, глибина, можливість для слухача."},
+  {tag:"Репетиція", text:"Хваліть оркестр — але тільки заслужено.", detail:"Порожня похвала знецінюється швидко. Конкретна і точна похвала створює довіру і професійну культуру в колективі."},
+  {tag:"Техніка", text:"Чим менший жест — тим більше напруження.", detail:"Гучна кульмінація не потребує великого жесту. Іноді саме стримане, майже статичне рухання створює максимальне внутрішнє напруження — і оркестр, і зал це відчувають."},
+  {tag:"Партитури", text:"Вивчайте оригінальні рукописи — вони дихають інакше.", detail:"Надрукована партитура — це переклад. Рукопис композитора — оригінал. Темп нот, виправлення, помарки розповідають про сумніви та рішення автора більше, ніж будь-який коментар."},
+  {tag:"Робота з оркестром", text:"Знайте імена своїх музикантів.", detail:"Це не просто ввічливість. Коли диригент звертається по імені — це інша розмова. Ім'я створює контакт і відповідальність."},
 ];
 
 let tips = [...BASE];
@@ -289,32 +112,32 @@ function goToday() { cur=todayIdx; show(true); }
 
 async function init() {
   document.getElementById('dateDisplay').textContent =
-    new Date().toLocaleDateString('ru-RU',{weekday:'long',day:'numeric',month:'long'});
+    new Date().toLocaleDateString('uk-UA',{weekday:'long',day:'numeric',month:'long'});
   cur = baseIndex(); todayIdx = cur; show(false);
 
   try {
     let cached = null;
-    try { const s=localStorage.getItem('cond_tip'); if(s){const p=JSON.parse(s); if(p.date===dayKey()) cached=p.tip;} } catch(e){}
+    try { const s=localStorage.getItem('cond_tip_ua'); if(s){const p=JSON.parse(s); if(p.date===dayKey()) cached=p.tip;} } catch(e){}
 
     const aiTip = cached || await (async () => {
-      const tags=["Дирижирование","Инструментовка","Репетиция","Техника","Партитуры","Работа с оркестром"];
+      const tags=["Диригування","Інструментування","Репетиція","Техніка","Партитури","Робота з оркестром"];
       const tag=tags[Math.floor(Math.random()*tags.length)];
       const res = await fetch("https://api.anthropic.com/v1/messages", {
         method:"POST", headers:{"Content-Type":"application/json"},
         body: JSON.stringify({
           model:"claude-sonnet-4-20250514", max_tokens:600,
-          system:`Ты — наставник дирижёров. Отвечай ТОЛЬКО JSON без markdown.
+          system:`Ти — наставник диригентів симфонічного оркестру. Відповідай ТІЛЬКИ JSON без markdown.
 Формат: {"tag":"...","text":"...","detail":"..."}
-tag: одна из: ${tags.join(', ')}
-text: афористичный совет до 12 слов
-detail: профессиональное объяснение 2-3 предложения`,
-          messages:[{role:"user",content:`Уникальный совет на тему: ${tag}. Дата: ${new Date().toLocaleDateString('ru-RU')}`}]
+tag: одна з: ${tags.join(', ')}
+text: афористична порада до 12 слів українською мовою
+detail: професійне пояснення 2-3 речення українською мовою`,
+          messages:[{role:"user",content:`Унікальна порада на тему: ${tag}. Дата: ${new Date().toLocaleDateString('uk-UA')}`}]
         })
       });
       const d=await res.json();
       const txt=d.content.filter(b=>b.type==='text').map(b=>b.text).join('').replace(/```json|```/g,'').trim();
       const tip=JSON.parse(txt);
-      try{localStorage.setItem('cond_tip',JSON.stringify({date:dayKey(),tip}));}catch(e){}
+      try{localStorage.setItem('cond_tip_ua',JSON.stringify({date:dayKey(),tip}));}catch(e){}
       return tip;
     })();
 
